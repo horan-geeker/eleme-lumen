@@ -8,8 +8,7 @@ server {
         server_name  localhost;
 
         index index.php index.html index.htm;
-
-	root D:\\www\\eleme-lumen\\public/;
+        root D:\\www\\eleme-lumen\\public/;
 	
         location ^~ /api {
         	try_files $uri $uri/ /index.php?$query_string;
