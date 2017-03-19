@@ -35,24 +35,44 @@ $app->group(['prefix' => 'api'], function () use ($app) {
                 ->header('Access-Control-Allow-Credentials','true')
                 ->header('Content-Type','application/json;charset=utf-8');
         } else {
-            return response()->json(['errno' => 1]);
+            return response()->json(['errno' => 1])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         }
     });
     $app->get('/ratings', function () {
         $seller = \App\Seller::find(1);
         $ratings = $seller->ratings;
         if ($ratings) {
-            return response()->json(['errno' => 0, 'data' => $ratings]);
+            return response()->json(['errno' => 0, 'data' => $ratings])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         } else {
-            return response()->json(['errno' => 1]);
+            return response()->json(['errno' => 1])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         }
     });
     $app->get('/goods', function () {
         $goods = \App\Goods::with('foods.ratings')->get();
         if ($goods) {
-            return response()->json(['errno' => 0, 'data' => $goods]);
+            return response()->json(['errno' => 0, 'data' => $goods])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         } else {
-            return response()->json(['errno' => 1]);
+            return response()->json(['errno' => 1])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         }
     });
 });
