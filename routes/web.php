@@ -29,7 +29,11 @@ $app->group(['prefix' => 'api'], function () use ($app) {
                 $sellerPics[] = $pic['src'];
             }
             $seller['pics'] = $sellerPics;
-            return response()->json(['errno' => 0, 'data' => $seller]);
+            return response()->json(['errno' => 0, 'data' => $seller])
+                ->header('Access-Control-Allow-Origin','*')
+                ->header('Access-Control-Allow-Methods','*')
+                ->header('Access-Control-Allow-Credentials','true')
+                ->header('Content-Type','application/json;charset=utf-8');
         } else {
             return response()->json(['errno' => 1]);
         }
