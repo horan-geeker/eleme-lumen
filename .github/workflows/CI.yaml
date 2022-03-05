@@ -21,7 +21,7 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           php_version: "7.1"
-          command: composer install
+          command: install
 
       - name: Generate env file
         run: sed -e 's/DB_USERNAME=/DB_USERNAME=${{secrets.DB_USERNAME}}/'
