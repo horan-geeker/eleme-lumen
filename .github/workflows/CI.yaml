@@ -19,6 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Generate env file
+        run: sed -e 's/DB_HOST=/DB_USERNAME=${{secrets.DB_USERNAME}}/'
+            -e 's/DB_PASSWORD=/DB_PASSWORD=${{secrets.DB_PASSWORD}}/' .env.example > .env
+
       - name: Export Date Env
         id: CURRENT_DATE
         run: echo "::set-output name=date::$(TZ=Asia/Shanghai date +'%Y-%m-%d-%H-%M-%S')"
