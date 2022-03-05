@@ -51,12 +51,12 @@ RUN apk add php7-fpm \
     php7-sysvshm \
     php7-sysvsem
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN composer install
-
 ADD nginx.conf /etc/nginx/nginx.conf
 
 ADD / /var/www/html
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN cd /var/www/html && composer install
 
 RUN chmod 777 /var/www/html/start.sh
 
