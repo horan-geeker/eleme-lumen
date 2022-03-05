@@ -49,7 +49,10 @@ RUN apk add php7-fpm \
     php7-posix \
     php7-sysvmsg \
     php7-sysvshm \
-    php7-sysvsem
+    php7-sysvsem \
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN composer instsall
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
