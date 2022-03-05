@@ -58,6 +58,8 @@ ADD nginx.conf /etc/nginx/nginx.conf
 ADD / /var/www/html
 
 RUN chmod 777 /var/www/html/start.sh
+RUN chmod 777 -R /var/www/html/bootstrap/cache
+RUN chmod 777 -R /var/www/html/storage
 
 EXPOSE 80
 
