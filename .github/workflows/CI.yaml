@@ -1,0 +1,35 @@
+name: Build Docker CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  TKE_DOCKER_HUB: ccr.ccs.tencentyun.com
+  TKE_IMAGE_URL: ccr.ccs.tencentyun.com/hejunwei/eleme-lumen-api
+  TKE_REGION: ap-chengdu
+  TKE_CLUSTER_ID: cls-kj6srqvx
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Export Date Env
+        id: CURRENT_DATE
+        run: echo "::set-output name=date::$(TZ=Asia/Shanghai date +'%Y-%m-%d-%H-%M-%S')"
+
+      - name: Build the Docker image
+        run: docker build -t ${TKE_IMAGE_URL}:${{steps.CURRENT_DATE.outputs.date}} .
+
+      - name: Login TKE Registry
+        run: |
+          docker login ${TKE_DOCKER_HUB} --username="${{secrets.TENCENT_CLOUD_ACCOUNT_ID}}" -p "${{ secrets.TKE_REGISTRY_PASSWORD }}"
+      # Push the Docker image to TKE Registry
+      - name: Publish
+        run: |
+          docker push ${TKE_IMAGE_URL}:${{steps.CURRENT_DATE.outputs.date}}
