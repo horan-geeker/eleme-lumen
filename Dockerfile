@@ -55,6 +55,8 @@ ADD nginx.conf /etc/nginx/nginx.conf
 
 ADD / /var/www/html
 
+RUN chmod 777 /var/www/html/start.sh
+
 EXPOSE 80
 
 CMD ["/var/www/html/start.sh"]
