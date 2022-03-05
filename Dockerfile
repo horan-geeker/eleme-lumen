@@ -51,6 +51,7 @@ RUN apk add php7-fpm \
     php7-sysvshm \
     php7-sysvsem
 
+ADD php.ini /etc/php7/php.ini
 ADD nginx.conf /etc/nginx/nginx.conf
 
 ADD / /var/www/html
