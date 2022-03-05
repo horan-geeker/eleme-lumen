@@ -9,7 +9,7 @@ RUN apk update && apk add tzdata \
 # 安装系统运行需要的软件，可根据实际情况增删
 RUN apk update \
     && apk add bash \
-    wget curl autoconf vim gcc g++ openssl-dev \
+    wget curl autoconf vim gcc g++ openssl-dev
 
 # 安装PHP及常用扩展，可根据实际情况增删
 RUN apk add php7-fpm \
