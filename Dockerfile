@@ -49,7 +49,8 @@ RUN apk add php7-fpm \
     php7-posix \
     php7-sysvmsg \
     php7-sysvshm \
-    php7-sysvsem
+    php7-sysvsem \
+    php7-tokenizer
 
 ADD php.ini /etc/php7/php.ini
 ADD nginx.conf /etc/nginx/nginx.conf
